@@ -69,3 +69,8 @@ tests/
 
 # Docker history
 .isaac-lab-docker-history
+
+#不放上去的
+datasets/
+outputs/
+

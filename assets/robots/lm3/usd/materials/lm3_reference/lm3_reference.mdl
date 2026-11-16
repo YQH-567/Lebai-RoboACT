@@ -1,0 +1,52 @@
+mdl 1.7;
+import ::state::*;
+import ::math::*;
+import ::tex::*;
+import ::OmniPBR::*;
+
+// Positions are mesh-local metres, independent of articulation/world transforms.
+// No UV primvars, geometry, or normals are edited.
+float stripe(float x, float center, float width) =
+    1.0 - math::smoothstep(width * 0.5 - 0.00035, width * 0.5 + 0.00035, math::abs(x-center));
+
+export material LM3Reference(
+    uniform int part_id = 0,
+    uniform texture_2d logo_texture = texture_2d(),
+    color shell_color = color(0.58, 0.60, 0.63),
+    color trim_color = color(0.28, 0.34, 0.38),
+    float shell_roughness = 0.47,
+    float shell_metallic = 0.18
+) = let {
+    float3 p = state::transform_point(state::coordinate_internal, state::coordinate_object, state::position());
+    float3 n = math::normalize(state::transform_normal(state::coordinate_internal, state::coordinate_object, state::normal()));
+    // 0=pedestal; 1=shoulder; 2/3=long arm links; 4/5=wrist; 6=tool flange.
+    float trim = part_id == 0 ? stripe(p.z, 0.119, 0.014) :
+        part_id == 1 ? math::max(stripe(p.z, -0.082, 0.014), p.z > -0.048 ? stripe(p.y, -0.035, 0.011) : 0.0) :
+        part_id == 2 ? math::max(math::max(stripe(p.x, -0.225, 0.012), stripe(p.x, -0.055, 0.012)), p.x > -0.046 ? stripe(p.z, 0.075, 0.009) : 0.0) :
+        part_id == 3 ? math::max(math::max(stripe(p.x, -0.205, 0.011), stripe(p.x, -0.054, 0.011)), p.x > -0.046 ? stripe(p.z, 0.041, 0.008) : 0.0) :
+        part_id == 4 ? math::max(stripe(p.z, -0.079, 0.006), p.z > -0.037 ? stripe(p.y, 0.033, 0.006) : 0.0) :
+        part_id == 5 ? math::max(stripe(p.z, -0.079, 0.006), p.z > -0.037 ? stripe(p.y, -0.033, 0.006) : 0.0) :
+        stripe(p.z, -0.071, 0.006);
+    // Narrow recessed seam lines in the same material, without displacement.
+    float seam = part_id == 0 ? stripe(p.z, 0.112, 0.0008) :
+        part_id == 1 ? stripe(p.z, -0.075, 0.0008) :
+        part_id == 2 ? math::max(stripe(p.x, -0.231, 0.0008), stripe(p.x, -0.049, 0.0008)) :
+        part_id == 3 ? math::max(stripe(p.x, -0.2105, 0.0008), stripe(p.x, -0.0485, 0.0008)) :
+        part_id == 6 ? stripe(p.z, -0.008, 0.0012) : stripe(p.z, -0.076, 0.0008);
+    color painted = math::lerp(math::lerp(shell_color, trim_color, trim), color(0.11, 0.13, 0.15), seam * 0.65);
+    // Print on the broad +Z/-Z faces of the two long links. Each side reads correctly.
+    float length = part_id == 2 ? 0.137 : 0.123;
+    float cx = part_id == 2 ? -0.140 : -0.130;
+    float u = (n.z >= 0.0 ? p.x-cx : cx-p.x)/length + 0.5;
+    float v = p.y/(length * 62.0/292.0) + 0.5;
+    float2 uv = float2(u,v);
+    float4 logo = tex::lookup_float4(logo_texture, uv, tex::wrap_clip, tex::wrap_clip);
+    float label_mask = (part_id == 2 || part_id == 3) && math::abs(n.z) > 0.72 && math::abs(p.y) < 0.016 ? logo.w : 0.0;
+    float status_ring = part_id == 1 && math::sqrt(p.x*p.x+p.y*p.y) > 0.041 ? stripe(p.z, 0.0775, 0.0018) : 0.0;
+    color status_color = p.x < 0.0 ? color(0.45,0.025,0.02) : color(0.10,0.30,0.39);
+    color albedo = math::lerp(math::lerp(painted, status_color, status_ring), color(logo.x,logo.y,logo.z), label_mask);
+} in OmniPBR::OmniPBR(
+    diffuse_color_constant: albedo,
+    reflection_roughness_constant: math::lerp(shell_roughness, 0.60, math::max(trim, label_mask)),
+    metallic_constant: math::lerp(shell_metallic, 0.05, math::max(trim,label_mask))
+);

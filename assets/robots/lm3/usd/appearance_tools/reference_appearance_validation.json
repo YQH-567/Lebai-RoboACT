@@ -1,0 +1,152 @@
+{
+  "target": "/home/l/isaac_space_01/act_manipulation/assets/robots/lm3/usd/lebai_lm3_lmg90_color_new1114.usd",
+  "backup": "/home/l/isaac_space_01/act_manipulation/assets/robots/lm3/usd/lebai_lm3_lmg90_color_new1114.before_projection.usd",
+  "joint_count": 12,
+  "fixed_joint_count": 2,
+  "visual_count": 14,
+  "collision_count": 14,
+  "root_non_material_content_unchanged": true,
+  "referenced_asset_hashes_unchanged": true,
+  "original_prim_paths_and_types_unchanged": true,
+  "rows": [
+    {
+      "part": "/World/lebai_lm3/base_link",
+      "material": "/World/Looks/Industrial_LM3_Reference_Base",
+      "visual_mesh": "/World/lebai_lm3/base_link/visuals/base_link/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lebai_lm3/base_link/collisions/base_link/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lebai_lm3/link_1",
+      "material": "/World/Looks/Industrial_LM3_Reference_Link1",
+      "visual_mesh": "/World/lebai_lm3/link_1/visuals/link1/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lebai_lm3/link_1/collisions/link1/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lebai_lm3/link_2",
+      "material": "/World/Looks/Industrial_LM3_Reference_Link2",
+      "visual_mesh": "/World/lebai_lm3/link_2/visuals/link2/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lebai_lm3/link_2/collisions/link2/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lebai_lm3/link_3",
+      "material": "/World/Looks/Industrial_LM3_Reference_Link3",
+      "visual_mesh": "/World/lebai_lm3/link_3/visuals/link3/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lebai_lm3/link_3/collisions/link3/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lebai_lm3/link_4",
+      "material": "/World/Looks/Industrial_LM3_Reference_Link4",
+      "visual_mesh": "/World/lebai_lm3/link_4/visuals/link4/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lebai_lm3/link_4/collisions/link4/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lebai_lm3/link_5",
+      "material": "/World/Looks/Industrial_LM3_Reference_Link5",
+      "visual_mesh": "/World/lebai_lm3/link_5/visuals/link5/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lebai_lm3/link_5/collisions/link5/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lebai_lm3/link_6",
+      "material": "/World/Looks/Industrial_LM3_Reference_Link6",
+      "visual_mesh": "/World/lebai_lm3/link_6/visuals/link6/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lebai_lm3/link_6/collisions/link6/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lmg90_gripper_inertial_stable/gripper/gripper_base_link",
+      "material": "/World/Looks/Industrial_SatinLightGray",
+      "visual_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_base_link/visuals/gripper_base/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_base_link/collisions/gripper_base/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lmg90_gripper_inertial_stable/gripper/gripper_l_link1",
+      "material": "/World/Looks/Industrial_GraphiteGray",
+      "visual_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_l_link1/visuals/gripper_link1/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_l_link1/collisions/gripper_link1/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lmg90_gripper_inertial_stable/gripper/gripper_l_link2",
+      "material": "/World/Looks/Industrial_GraphiteGray",
+      "visual_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_l_link2/visuals/gripper_link2/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_l_link2/collisions/gripper_link2/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lmg90_gripper_inertial_stable/gripper/gripper_l_link_finger",
+      "material": "/World/Looks/Industrial_GraphiteGray",
+      "visual_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_l_link_finger/visuals/gripper_link_finger/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_l_link_finger/collisions/gripper_link_finger/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lmg90_gripper_inertial_stable/gripper/gripper_r_link1",
+      "material": "/World/Looks/Industrial_GraphiteGray",
+      "visual_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_r_link1/visuals/gripper_link1/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_r_link1/collisions/gripper_link1/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lmg90_gripper_inertial_stable/gripper/gripper_r_link2",
+      "material": "/World/Looks/Industrial_GraphiteGray",
+      "visual_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_r_link2/visuals/gripper_link2/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_r_link2/collisions/gripper_link2/node_STL_BINARY_/mesh"
+    },
+    {
+      "part": "/World/lmg90_gripper_inertial_stable/gripper/gripper_r_link_finger",
+      "material": "/World/Looks/Industrial_GraphiteGray",
+      "visual_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_r_link_finger/visuals/gripper_link_finger/node_STL_BINARY_/mesh",
+      "collision_mesh": "/World/lmg90_gripper_inertial_stable/gripper/gripper_r_link_finger/collisions/gripper_link_finger/node_STL_BINARY_/mesh"
+    }
+  ],
+  "revolute_joints": [
+    "/World/lebai_lm3/joints/joint_1",
+    "/World/lebai_lm3/joints/joint_2",
+    "/World/lebai_lm3/joints/joint_3",
+    "/World/lebai_lm3/joints/joint_4",
+    "/World/lebai_lm3/joints/joint_5",
+    "/World/lebai_lm3/joints/joint_6",
+    "/World/lmg90_gripper_inertial_stable/gripper/joints/gripper_l_joint1",
+    "/World/lmg90_gripper_inertial_stable/gripper/joints/gripper_l_joint2",
+    "/World/lmg90_gripper_inertial_stable/gripper/joints/gripper_l_joint_finger",
+    "/World/lmg90_gripper_inertial_stable/gripper/joints/gripper_r_joint1",
+    "/World/lmg90_gripper_inertial_stable/gripper/joints/gripper_r_joint2",
+    "/World/lmg90_gripper_inertial_stable/gripper/joints/gripper_r_joint_finger"
+  ],
+  "fixed_joints": [
+    "/World/lebai_lm3/root_joint",
+    "/World/lmg90_gripper_inertial_stable/gripper/gripper_base_link/AssemblerFixedJoint"
+  ],
+  "reference_layer_hashes": {
+    "/home/l/isaac_space_01/act_manipulation/assets/grapper/lmg90/urdf/lmg90_gripper_new/configuration/lmg90_gripper_new_sensor.usd": "c5d23a64518dbbc8a356deafdb93d6701a0198e1f907634689f453577d2bad14",
+    "/home/l/isaac_space_01/act_manipulation/assets/grapper/lmg90/urdf/lmg90_gripper_new/configuration/lmg90_gripper_new_base.usd": "011a2eab4927e5b8c14f5adfa0a0c0a4e71f1a69e49117d5ab940dd80e8fe147",
+    "/home/l/isaac_space_01/act_manipulation/assets/grapper/lmg90/urdf/lmg90_gripper_new/configuration/lmg90_gripper_new_physics.usd": "6fcac72f0527c51de04b3dcba4a648dced7a28926dc02ccbfe655353a35d647d",
+    "/home/l/isaac_space_01/act_manipulation/assets/grapper/lmg90/urdf/lmg90_gripper_new/lmg90_gripper_new.usd": "5ef4137f972453938110ac34820b64f683b84e707cda39105bc6c4b7b72f533d",
+    "/home/l/isaac_space_01/act_manipulation/assets/grapper/lmg90/urdf/lmg90_gripper_new/configuration/lmg90_gripper_new_robot.usd": "3d6caab4cc9ee78ece97e58480056329861a485e9cccd4298049decda9e3789c",
+    "/home/l/isaac_space_01/act_manipulation/assets/grapper/lmg90/usd/lmg90_gripper_inertial_stable.usd": "37b6ea9de2972c3ce7b2fc75b18dd56cf8126544d40d227f54ced23261d71aed",
+    "/home/l/isaac_space_01/act_manipulation/assets/robots/lm3/lebai_lm3/configuration/lebai_lm3_physics.usd": "8f9e8bbcec81dd4b85a42bf58ff82873473894bf02023696f8be7197b6f800f1",
+    "/home/l/isaac_space_01/act_manipulation/assets/robots/lm3/lebai_lm3/configuration/lebai_lm3_sensor.usd": "7a4a2aefdc1a69cc05c1ea363f5f4885fee2cb40fcf78eb4f5afc53d565b1881",
+    "/home/l/isaac_space_01/act_manipulation/assets/robots/lm3/lebai_lm3/lebai_lm3.usd": "44e6d4574b3162bbdbe3c1da8408e710bd842ebeaac19d1f4e952f3869ea5d05",
+    "/home/l/isaac_space_01/act_manipulation/assets/robots/lm3/lebai_lm3/configuration/lebai_lm3_base.usd": "90d61f1f35cb2fec7eeca68a6f649f4c5e0178ed94c5c098c0f8f49ae186dd68",
+    "/home/l/isaac_space_01/act_manipulation/assets/robots/lm3/lebai_lm3/configuration/lebai_lm3_robot.usd": "913292da6e39fab0ccdd52e1f4c6b29e928e8d00348114006b25a5d46df8439e"
+  },
+  "target_sha256": "703d8ce94f6f06a513f6c6dbb0ef0be800c3d62ff6cfc20d1ffa0fb933b2a885",
+  "material_dependencies": {
+    "materials/lm3_reference/lebai_marking.png": "45f297cfa29006464271059335e866c0e820b3ebda65fe1d77feac1ebb3955f7",
+    "materials/lm3_reference/lebai_official_logo.svg": "a1cea2e17bdb115426f21e35892005c578a46e55da290ff264590e24583084e3",
+    "materials/lm3_reference/lm3_reference.mdl": "7293354a0bf129d83d4953eb2dad8f72d1956e95fd979b2c3ab49dad2de9ca82",
+    "materials/lm3_reference/lebai_print_decal.svg": "2174a518034b65a8eead19aa9c084c7e840c52bedf0613ccb3e765e6289640a3"
+  },
+  "rtx_validation": {
+    "renderer": "RayTracedLighting",
+    "isaac_sim": "5.1.0",
+    "views": [
+      "reference_appearance_overview.png",
+      "reference_appearance_reverse.png",
+      "reference_appearance_gripper.png"
+    ],
+    "resolution": [
+      1440,
+      1080
+    ],
+    "mdl_errors": 0,
+    "original_usd_unchanged_by_render": true,
+    "temporary_fill_light_intensity": 450,
+    "camera_and_lighting_saved": false
+  }
+}
