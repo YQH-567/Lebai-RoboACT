@@ -198,16 +198,31 @@ def run_inference_worker(args):
 
     model = model.to(device)
     model.eval()
-    
-    # 评估阶段启用每步重新规划
-    # 不修改训练好的模型权重
-    model.config.n_action_steps = 1
 
-    # 必须重置动作队列，使队列长度同步变成1
+    # # 评估阶段启用每步重新规划
+    # # 不修改训练好的模型权重
+
+    # # 必须重置动作队列，使队列长度同步变成1
+    # model.reset()
+
+    # print("[ACT WORKER] Runtime action steps:",
+    #     model.config.n_action_steps)
+    # Experiment: execute 20 actions per ACT inference
+    model.config.n_action_steps = 30
+
+    # Rebuild internal action queue using the new configuration
     model.reset()
 
-    print("[ACT WORKER] Runtime action steps:",
+    assert model._action_queue.maxlen == 30
+
+    print("[ACT WORKER] Chunk size:",
+        model.config.chunk_size)
+
+    print("[ACT WORKER] Action steps:",
         model.config.n_action_steps)
+
+    print("[ACT WORKER] Actual queue maxlen:",
+        model._action_queue.maxlen)
 
     # Load the exact saved normalization pipelines.
     # Do NOT calculate new statistics.

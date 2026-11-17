@@ -89,21 +89,22 @@ lerobot-train --help
 - 在env_act的环境下，检查收集的数据格式运行scripts/act/inspect_hdf5.py
 - 同样环境下运行convert_hdf5_to_lerobot.py,完成从 HDF5 的 uint8、HWC 格式到 LeRobot 的归一化、CHW 格式转换
 ### 3.2 数据集总体信息
-第一轮数据收集
+第一轮和第二轮数据收集
 
-| 项目 | 实际数据 |
-|---|---|
-| 数据格式 | HDF5 (.hdf5) |
-| Episode 数量 | 200 |
-| 总帧数 | 13,662 |
-| 最小帧数 | 66 |
-| 最大帧数 | 72 |
-| 平均帧数 | 68.31 |
-| 采集频率 | 10 Hz |
-| 图像分辨率 | 320 × 180 |
-| 相机数量 | 2（Wrist + Front） |
-| 机械臂 | Lebai LM3 + LMG90 |
-| 专家控制方式 | IK + FSM 状态机 |
+| 项目 | 实际数据1 | 实际数据2 |
+|---|---|---|
+| 数据格式 | HDF5 (.hdf5) | HDF5 (.hdf5) |
+| Episode 数量 | 200 | 200 |
+| 总帧数 | 13,662 | 13,662✖2.5 |
+| 最小帧数 | 66 | 66✖2.5 |
+| 最大帧数 | 72 | 72✖2.5 |
+| 平均帧数 | 68.31 | 68.31✖2.5 |
+| 采集频率 | 10 Hz | 25 Hz |
+| 图像分辨率 | 320 × 180 | 320 × 180 |
+| 相机数量 | 2（Wrist + Front） | 2（Wrist + Front） |
+| 机械臂 | Lebai LM3 + LMG90 | Lebai LM3 + LMG90 |
+| 专家控制方式 | IK + FSM 状态机 | IK + FSM 状态机 |
+| 是否同时收集深度图 | 否 | 是 |
 
 ### 3.3 HDF5 数据字段
 
@@ -216,36 +217,37 @@ lerobot-train \
 Observation / Action 数据使用矩阵
 
 ☑ 表示当前实验已经使用；☐ 表示待选择。实验 1 根据当前实际训练配置预填。
+实验123使用的是数据第一版，实验45使用的是数据第二版
 
 | 数据字段 | 数据格式 | 实验 1 | 实验 2 | 实验 3 | 实验 4 | 实验 5 |
 |---|---|---|---|---|---|---|
-| Wrist RGB | (3,180,320) | ☑ | ☑ | ☑ | ☐ | ☐ |
-| Front RGB | (3,180,320) | ☑ | ☑ | ☑ | ☐ | ☐ |
-| Joint Position | (12,) | ☑ | ☑ | ☑ | ☐ | ☐ |
-| Joint Velocity | (12,) | ☐ | ☑ | ☑ | ☐ | ☐ |
-| EE Pose | (7,) | ☐ | ☑ | ☑ | ☐ | ☐ |
-| Object Position | (3,) | ☐ | ☐ | ☑ | ☐ | ☐ |
+| Wrist RGB | (3,180,320) | ☑ | ☑ | ☑ | ☑ | ☐ |
+| Front RGB | (3,180,320) | ☑ | ☑ | ☑ | ☑ | ☐ |
+| Joint Position | (12,) | ☑ | ☑ | ☑ | ☑ | ☐ |
+| Joint Velocity | (12,) | ☐ | ☑ | ☑ | ☑ | ☐ |
+| EE Pose | (7,) | ☐ | ☑ | ☑ | ☑ | ☐ |
+| Object Position | (3,) | ☐ | ☐ | ☑ | ☑ | ☐ |
 | FSM State | (1,) | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Depth Image | 当前未采集 | — | — | — | — | — |
-| Action Label | (8,) | ☑ | ☑ | ☐ | ☐ | ☐ |
+| Depth Image | 未采集 | 未采集 | 未采集 | 采集未使用 | — | — |
+| Action Label | (8,) | ☑ | ☑ | ☑ | ☑ | ☐ |
 
 实验设计表格：
 | 实验记录 | 实验 1 | 实验 2 | 实验 3 | 实验 4 | 实验 5 |
 |---|---|---|---|---|---|
 | 实验名称 | ACT Baseline | 待定 | 待定 | 待定 | 待定 |
-| Batch Size | 8 | 8 | 8 | — | — |
-| Chunk Size | 30 | 30 | 30 | — | — |
-| Action Steps | 10 | 10 | 10 | — | — |
-| Learning Rate | 1e-5 | 1e-5 | 1e-5 | — | — |
-| Training Steps | 30000 | 60000 | 60000 | — | — |
-| Vision Backbone | ResNet18 | ResNet18 | ResNet18 | — | — |
-| VAE | True | True | — | — | — |
+| Batch Size | 8 | 8 | 8 | 8 | — |
+| Chunk Size | 30 | 30 | 30 | 30 | — |
+| Action Steps | 10 | 10 | 10 | 10/20/30/40 | — |
+| Learning Rate | 1e-5 | 1e-5 | 1e-5 | 1e-5 | — |
+| Training Steps | 30000 | 60000 | 60000 | 60000 | — |
+| Vision Backbone | ResNet18 | ResNet18 | ResNet18 | ResNet18 | ResNet18 |
+| VAE | True | True | True | True | True |
 | Train L1 Loss | 待填写 | — | — | — | — |
 | Validation L1 Loss | 待填写 | — | — | — | — |
 | KL Loss | 待填写 | — | — | — | — |
-| 抓取成功率 | 0 | 0 | 35% | % | — |
-| 放置成功率 | 0 | 0 | 35% | % | — |
-| 完整任务成功率 | 0 | — | 35% | — | — |
+| 抓取成功率 | 0 | 0 | 35% | 40%/80%/96%/97% | — |
+| 放置成功率 | 0 | 0 | 35% | 40%/80%/96%/97% | — |
+| 完整任务成功率 | 0 | — | 35% | 40%/80%/96%/97% | — |
 | 平均推理时间 | 0 | — | — | — | — |
 | 实验结论 | 0 | — | — | — | — |
 
@@ -259,8 +261,18 @@ Observation / Action 数据使用矩阵
 
 <img src="./docx/实验3的结果视频成功率35%25.gif" width=400> <img src="./docx/实验3的35%25的成功率.png" width=400>
 
+实验4的结果视频，同样为100次评估，这里展示成功率比较高的两个策略输出步的视频
+左边`model.config.n_action_steps = 40`成功率为97%
+右边`model.config.n_action_steps = 30`成功率为96%
+
+<img src="./docx/策略一次输出40步带方块相对位置效果图.gif" width=400> <img src="./docx/策略一次输出30步带方块相对位置效果图.gif" width=400>
+
+
+
 ### 5.3 LeRobot 0.7.0 用什么看训练曲线
 - 使用`trackio show --project lebai_act_25hz`看，像tensorboard
+
+
 
 ## 6.视频专家抓取与 ACT 自主抓取对比
 ### 6.1抓取放置的专家数据视频

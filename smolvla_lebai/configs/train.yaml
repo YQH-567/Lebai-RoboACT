@@ -1,0 +1,31 @@
+dataset:
+  repo_id: local/lebai_lm3_pick_place_25hz_smolvla31_train
+  root: datasets/lerobot/lebai_lm3_pick_place_25hz_smolvla31/train
+  video_backend: pyav
+policy:
+  path: smolvla_lebai/pretrained/smolvla_base_lebai
+  device: cuda
+  push_to_hub: false
+  chunk_size: 50
+  n_action_steps: 10
+  freeze_vision_encoder: true
+  train_expert_only: true
+  train_state_proj: true
+  load_vlm_weights: false
+rename_map:
+  observation.images.front: observation.images.camera1
+  observation.images.wrist: observation.images.camera2
+output_dir: outputs/train/smolvla_lebai_1000
+job_name: smolvla_lebai_1000
+batch_size: 1
+steps: 1000
+seed: 20261117
+num_workers: 0
+log_freq: 10
+save_freq: 200
+save_checkpoint: true
+save_checkpoint_to_hub: false
+env_eval_freq: 0
+eval_steps: 0
+accelerator:
+  mixed_precision: bf16

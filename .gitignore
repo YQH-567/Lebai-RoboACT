@@ -73,4 +73,8 @@ tests/
 #不放上去的
 datasets/
 outputs/
+.conda/
+.cache/
+smolvla_lebai/pretrained/
+smolvla/
 
