@@ -260,7 +260,7 @@ Observation / Action 数据使用矩阵
 <img src="./docx/实验3的结果视频成功率35%25.gif" width=400> <img src="./docx/实验3的35%25的成功率.png" width=400>
 
 ### 5.3 LeRobot 0.7.0 用什么看训练曲线
-
+- 使用`trackio show --project lebai_act_25hz`看，像tensorboard
 
 ## 6.视频专家抓取与 ACT 自主抓取对比
 ### 6.1抓取放置的专家数据视频

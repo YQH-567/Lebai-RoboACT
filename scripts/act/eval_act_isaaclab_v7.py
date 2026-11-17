@@ -198,6 +198,16 @@ def run_inference_worker(args):
 
     model = model.to(device)
     model.eval()
+    
+    # 评估阶段启用每步重新规划
+    # 不修改训练好的模型权重
+    model.config.n_action_steps = 1
+
+    # 必须重置动作队列，使队列长度同步变成1
+    model.reset()
+
+    print("[ACT WORKER] Runtime action steps:",
+        model.config.n_action_steps)
 
     # Load the exact saved normalization pipelines.
     # Do NOT calculate new statistics.
