@@ -1541,13 +1541,13 @@ def main():
     parser.add_argument(
         "--policy-fps",
         type=int,
-        default=50, #原本是10
+        default=10, #原本是10
     )
 
     parser.add_argument(
         "--max-ee-speed",
         type=float,
-        default=1.0,#原本是0.5
+        default=0.5,#原本是0.5
     )
 
     parser.add_argument(

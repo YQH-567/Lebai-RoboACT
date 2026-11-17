@@ -11,7 +11,7 @@ python scripts/record/inspect_dataset.py
 import h5py
 import matplotlib.pyplot as plt
 
-path = "datasets/raw/episode_000000.hdf5"
+path = "datasets/raw_25hz/episode_000000.hdf5"
 
 with h5py.File(path, "r") as f:
     wrist = f["observations/images/wrist"]

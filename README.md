@@ -135,6 +135,7 @@ lerobot-train --help
 
 ### 3.5 数据质量检查结果
 
+- 状态说明
 | 检查项目 | 检查结果 | 说明 |
 |---|---|---|
 | Episode 完整性 | 通过 | 200 条数据均已保存 |
@@ -144,6 +145,20 @@ lerobot-train --help
 | 状态机完成 | 通过 | 200 条均为 True |
 | 成功标签 | 待完善 | success 全部为 -1 |
 | 深度图数据 | 未采集 | 当前版本只使用 RGB |
+
+2. hdf5转换成lerobot的数据
+```bash
+cd ~/isaac_space_01/act_manipulation
+conda activate env_act
+
+python scripts/act/convert_hdf5_to_lerobot_25hz.py \
+    --scan-only  #检查FPS、时间戳、RGB、Depth、34维状态所需字段和成功标签。
+#如果成功轨迹不足200条，但想先用现有成功数据训练
+python scripts/act/convert_hdf5_to_lerobot_25hz.py \
+    --allow-fewer-successes
+# 然后正式转换数据：
+python scripts/act/convert_hdf5_to_lerobot_25hz.py
+```
 
 ## 4.ACT训练配置、依赖版本、checkpoint 说明
 
@@ -189,12 +204,12 @@ Observation / Action 数据使用矩阵
 
 | 数据字段 | 数据格式 | 实验 1 | 实验 2 | 实验 3 | 实验 4 | 实验 5 |
 |---|---|---|---|---|---|---|
-| Wrist RGB | (3,180,320) | ☑ | ☑ | ☐ | ☐ | ☐ |
-| Front RGB | (3,180,320) | ☑ | ☑ | ☐ | ☐ | ☐ |
-| Joint Position | (12,) | ☑ | ☑ | ☐ | ☐ | ☐ |
-| Joint Velocity | (12,) | ☐ | ☑ | ☐ | ☐ | ☐ |
-| EE Pose | (7,) | ☐ | ☑ | ☐ | ☐ | ☐ |
-| Object Position | (3,) | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Wrist RGB | (3,180,320) | ☑ | ☑ | ☑ | ☐ | ☐ |
+| Front RGB | (3,180,320) | ☑ | ☑ | ☑ | ☐ | ☐ |
+| Joint Position | (12,) | ☑ | ☑ | ☑ | ☐ | ☐ |
+| Joint Velocity | (12,) | ☐ | ☑ | ☑ | ☐ | ☐ |
+| EE Pose | (7,) | ☐ | ☑ | ☑ | ☐ | ☐ |
+| Object Position | (3,) | ☐ | ☐ | ☑ | ☐ | ☐ |
 | FSM State | (1,) | ☐ | ☐ | ☐ | ☐ | ☐ |
 | Depth Image | 当前未采集 | — | — | — | — | — |
 | Action Label | (8,) | ☑ | ☑ | ☐ | ☐ | ☐ |
@@ -203,21 +218,21 @@ Observation / Action 数据使用矩阵
 | 实验记录 | 实验 1 | 实验 2 | 实验 3 | 实验 4 | 实验 5 |
 |---|---|---|---|---|---|
 | 实验名称 | ACT Baseline | 待定 | 待定 | 待定 | 待定 |
-| Batch Size | 8 | 8 | — | — | — |
-| Chunk Size | 30 | 30 | — | — | — |
-| Action Steps | 10 | 10 | — | — | — |
-| Learning Rate | 1e-5 | 1e-5 | — | — | — |
-| Training Steps | 30000 | 60000 | — | — | — |
-| Vision Backbone | ResNet18 | ResNet18 | — | — | — |
+| Batch Size | 8 | 8 | 8 | — | — |
+| Chunk Size | 30 | 30 | 30 | — | — |
+| Action Steps | 10 | 10 | 10 | — | — |
+| Learning Rate | 1e-5 | 1e-5 | 1e-5 | — | — |
+| Training Steps | 30000 | 60000 | 60000 | — | — |
+| Vision Backbone | ResNet18 | ResNet18 | ResNet18 | — | — |
 | VAE | True | True | — | — | — |
 | Train L1 Loss | 待填写 | — | — | — | — |
 | Validation L1 Loss | 待填写 | — | — | — | — |
 | KL Loss | 待填写 | — | — | — | — |
-| 抓取成功率 | 待填写 | 0 | — | — | — |
-| 放置成功率 | 待填写 | 0 | — | — | — |
-| 完整任务成功率 | 待填写 | — | — | — | — |
-| 平均推理时间 | 待填写 | — | — | — | — |
-| 实验结论 | 待填写 | — | — | — | — |
+| 抓取成功率 | 0 | 0 | 35% | % | — |
+| 放置成功率 | 0 | 0 | 35% | % | — |
+| 完整任务成功率 | 0 | — | — | — | — |
+| 平均推理时间 | 0 | — | — | — | — |
+| 实验结论 | 0 | — | — | — | — |
 
 ### 5.2 实验结果
 

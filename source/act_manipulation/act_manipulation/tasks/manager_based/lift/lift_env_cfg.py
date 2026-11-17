@@ -94,7 +94,7 @@ class ObjectTableSceneCfg(InteractiveSceneCfg):
         # 必须替换为 LM3 USD 中真实存在的末端刚体 Link 路径
         prim_path="{ENV_REGEX_NS}/Robot/lebai_lm3/link_6/WristCamera",
 
-        update_period=0.1,  # 10 Hz
+        update_period=0.04,  # 10 Hz，10HZ训练出来发现不太行，现在换成25HZ
         height=180,
         width=320,
         data_types=["rgb", "distance_to_image_plane"],
@@ -119,7 +119,7 @@ class ObjectTableSceneCfg(InteractiveSceneCfg):
     front_camera = CameraCfg(
         prim_path="{ENV_REGEX_NS}/FrontCamera",
 
-        update_period=0.1,
+        update_period=0.04,  #这里也是
         height=180,
         width=320,
         data_types=["rgb", "distance_to_image_plane"],
