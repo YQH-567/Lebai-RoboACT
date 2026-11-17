@@ -192,8 +192,23 @@ lerobot-train \
     --steps=30000 \
     --output_dir=outputs/train/act_lebai_lm3_v1 \
     --job_name=act_lebai_lm3_v1
+    #是否开启训练参数查看：
+    --trackio.enable=true \
+    --trackio.project=<名字>
     #评估代码
     python scripts/act/eval_act_isaaclab_v2.py     --checkpoint /home/l/isaac_space_01/act_manipulation/outputs/train/act_lebai_lm3_v6/checkpoints/060000/pretrained_model     --num-episodes 1
+    # 实验3和实验4的评估代码：
+    set -o pipefail
+
+    python scripts/act/eval_act_isaaclab_v7.py \
+        --checkpoint outputs/train/act_lebai_lm3_25hz/checkpoints/060000/pretrained_model \
+        --policy-fps 25 \
+        --max-policy-steps 240 \
+        --success-stable-steps 13 \
+        --num-episodes 100 \
+        --output-dir outputs/eval/act_lebai_lm3_25hz \
+        --headless \
+        2>&1 | grep --line-buffered -v '^\[DEBUG\]'
 ```
 
 ## 5.效果分析Loss、成功率、失败案例
@@ -230,7 +245,7 @@ Observation / Action 数据使用矩阵
 | KL Loss | 待填写 | — | — | — | — |
 | 抓取成功率 | 0 | 0 | 35% | % | — |
 | 放置成功率 | 0 | 0 | 35% | % | — |
-| 完整任务成功率 | 0 | — | — | — | — |
+| 完整任务成功率 | 0 | — | 35% | — | — |
 | 平均推理时间 | 0 | — | — | — | — |
 | 实验结论 | 0 | — | — | — | — |
 
@@ -239,6 +254,13 @@ Observation / Action 数据使用矩阵
 实验1和实验二一开始都没对上，视频如下,右边是IK的专家视频
 
 <img src="./docx/非rel数据收集v1和v2的评估视频结果.gif" width=400> <img src="./docx/IK的专家动作视频.gif" width=400>
+
+实验3的结果视频，成功率大概35%
+
+<img src="./docx/实验3的结果视频成功率35%25.gif" width=400> <img src="./docx/实验3的35%25的成功率.png" width=400>
+
+### 5.3 LeRobot 0.7.0 用什么看训练曲线
+
 
 ## 6.视频专家抓取与 ACT 自主抓取对比
 ### 6.1抓取放置的专家数据视频
