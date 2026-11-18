@@ -234,12 +234,12 @@ def run_inference_worker(args):
     print("[ACT WORKER] Checkpoint state shape:", checkpoint_state_shape)
 
     # Controlled comparison with the 34D baseline: execute 30 actions per chunk.
-    model.config.n_action_steps = 50
+    model.config.n_action_steps = 45
 
     # Rebuild internal action queue using the new configuration
     model.reset()
 
-    if model._action_queue.maxlen != 50:
+    if model._action_queue.maxlen != 45:
         raise RuntimeError("ACT action queue did not initialize to 30 steps")
 
     # print("[ACT WORKER] Chunk size:",
