@@ -99,7 +99,7 @@ DATASET_FEATURES = {
     "observation.state": {
         "dtype": "float32",
         "shape": (34,),
-        "names": STATE_NAMES,
+        "names": STATE_NAMES,  #暂时不改名字
     },
     "observation.images.wrist": {
         "dtype": "video",
@@ -620,7 +620,7 @@ def get_camera_rgb(camera):
 
     rgb = camera.data.output["rgb"][0]
 
-    if hasattr(rgb, "detach"):
+    if hasattr(rgb, "detach"):--headless 2>&1 | grep --line-buffered -v '^\[DEBUG\]'
         rgb = rgb.detach().cpu().numpy()
 
     rgb = np.asarray(rgb)
@@ -732,6 +732,8 @@ def get_observation(env):
         scene["object"].data.root_pos_w[0] - scene.env_origins[0]
     ).detach().cpu().numpy().astype(np.float32)
     state = build_state(qpos, qvel, ee_pose, object_position)
+    #state = build_state(qpos, qvel, ee_pose)
+    
 
     if state.shape != (34,):
         raise ValueError(
@@ -892,7 +894,7 @@ def check_done(terminated, time_outs):
 
 
 # ============================================================
-# Main simulation evaluation
+# 主要仿真评估
 # ============================================================
 
 def run_isaaclab(args, simulation_app):
